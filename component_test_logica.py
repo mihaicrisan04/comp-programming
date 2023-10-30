@@ -148,4 +148,21 @@ def div(first_number: str, second_number: str, base: int) -> str:
 
     Returns str: the quotient of the two numbers
     """
-    pass
+    
+    values = "0123456789ABCDEF"
+
+    result = ""
+    remainder = ""
+
+    for digit in first_number:
+        remainder += digit
+        digit = values.index(remainder[0])
+
+        if digit >= values.index(second_number):
+            result += values[digit // values.index(second_number)]
+            remainder = values[digit % values.index(second_number)]
+
+        else:
+            result += "0"
+
+    return result
