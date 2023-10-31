@@ -137,32 +137,41 @@
 # print(mul("111", "1", 2))
 
 
-def div(first_number: str, second_number: str, base: int) -> str:
-    """
-    Description: This function divides two numbers in a given base
+# def div(first_number: str, second_number: str, base: int) -> (str, str):
+#     """
+#     Description: This function divides two numbers in a given base
 
-    Parameters:
-    first_number (str): the first number
-    second_number (str): the second number
-    base (int): the base of the numbers
+#     Parameters:
+#     first_number (str): the first number
+#     second_number (str): the second number that is a single digit
+#     base (int): the base of the numbers
 
-    Returns str: the quotient of the two numbers
-    """
+#     Returns (str, str): the quotient and the remainder of the two numbers
+#     """
     
-    values = "0123456789ABCDEF"
+#     values = "0123456789ABCDEF"
 
-    result = ""
-    remainder = ""
+#     quotient = ""
+#     remainder = 0
 
-    for digit in first_number:
-        remainder += digit
-        digit = values.index(remainder[0])
+#     for i in range(len(first_number)):
+#         digit = values.index(first_number[i])
+#         d = remainder * 10 + digit
+#         digit = d // values.index(second_number)
+#         remainder = d % values.index(second_number)
+#         quotient += values[digit]
+    
+#     quotient = quotient.lstrip("0")
+#     remainder = values[remainder]
 
-        if digit >= values.index(second_number):
-            result += values[digit // values.index(second_number)]
-            remainder = values[digit % values.index(second_number)]
+#     return quotient, remainder
 
-        else:
-            result += "0"
 
-    return result
+
+
+# print(div("101011", "1", 2))
+# print(div("AA", "2", 16))
+# print(div("999", "3", 10))
+# print(div("88", "3", 16))
+# print(div("FFFF", "2", 16))
+
