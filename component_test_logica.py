@@ -1,46 +1,46 @@
 
-# def add(first_number: str, second_number: str, base: int) -> str:
-#     """
-#     Description: This function adds two numbers in a given base
+def add(first_number: str, second_number: str, base: int) -> str:
+    """
+    Description: This function adds two numbers in a given base
 
-#     Parameters:
-#     first_number (str): the first number
-#     second_number (str): the second number
-#     base (int): the base of the numbers
+    Parameters:
+    first_number (str): the first number
+    second_number (str): the second number
+    base (int): the base of the numbers
 
-#     Returns str: the sum of the two numbers
-#     """
+    Returns str: the sum of the two numbers
+    """
 
-#     values = "0123456789ABCDEF"
+    values = "0123456789ABCDEF"
 
-#     result = ""
-#     carry = 0
+    result = ""
+    carry = 0
 
-#     while len(first_number) != len(second_number):
-#         if len(first_number) > len(second_number):
-#             second_number = "0" + second_number
+    while len(first_number) != len(second_number):
+        if len(first_number) > len(second_number):
+            second_number = "0" + second_number
 
-#         else:
-#             first_number = "0" + first_number
+        else:
+            first_number = "0" + first_number
 
-#     for i in range(len(first_number) - 1, -1, -1):
-#         digit1 = values.index(first_number[i])
-#         digit2 = values.index(second_number[i])
-#         digit = digit1 + digit2 + carry
+    for i in range(len(first_number) - 1, -1, -1):
+        digit1 = values.index(first_number[i])
+        digit2 = values.index(second_number[i])
+        digit = digit1 + digit2 + carry
 
-#         if digit >= base:
-#             digit -= base
-#             carry = 1
+        if digit >= base:
+            digit -= base
+            carry = 1
 
-#         else:
-#             carry = 0
+        else:
+            carry = 0
 
-#         result = values[digit] + result
+        result = values[digit] + result
 
-#     if carry == 1:
-#         result = "1" + result
+    if carry == 1:
+        result = "1" + result
 
-#     return result
+    return result
 
 
 # print(add("AA", "1", 16))
@@ -96,41 +96,41 @@
 # print(sub("101011", "11", 2))
 
 
-# def mul(first_number: str, second_number: str, base: int) -> str:
-#     """
-#     Description: This function multiplies the first number by the second number which is a single digit
+def mul(first_number: str, second_number: str, base: int) -> str:
+    """
+    Description: This function multiplies the first number by the second number which is a single digit
 
-#     Parameters:
-#     first_number (str): the first number
-#     second_number (str): the second number
-#     base (int): the base of the numbers
+    Parameters:
+    first_number (str): the first number
+    second_number (str): the second number
+    base (int): the base of the numbers
 
-#     Returns str: the product of the two numbers
-#     """
+    Returns str: the product of the two numbers
+    """
 
-#     values = "0123456789ABCDEF"
+    values = "0123456789ABCDEF"
 
-#     digit2 = values.index(second_number)
-#     result = ""
-#     carry = 0
+    digit2 = values.index(second_number)
+    result = ""
+    carry = 0
 
-#     for i in range(len(first_number) - 1, -1, -1):
-#         digit1 = values.index(first_number[i])
-#         digit = digit1 * digit2 + carry
+    for i in range(len(first_number) - 1, -1, -1):
+        digit1 = values.index(first_number[i])
+        digit = digit1 * digit2 + carry
 
-#         if digit >= base:
-#             carry = digit // base
-#             digit %= base
+        if digit >= base:
+            carry = digit // base
+            digit %= base
 
-#         else:
-#             carry = 0
+        else:
+            carry = 0
 
-#         result = values[digit] + result
+        result = values[digit] + result
 
-#     if carry != 0:
-#         result = values[carry] + result
+    if carry != 0:
+        result = values[carry] + result
 
-#     return result
+    return result
 
 # print(mul("AA", "2", 16))
 # print(mul("2", "2", 16))
@@ -201,4 +201,36 @@
 
 
 # print(successive_divisions_method("2653", 10, 16))
+
+
+def substitution_method(number: str, base: int, new_base: int) -> int:
+    """
+    Description: This function converts a number from a base to another base using the substitution method
+
+    Parameters:
+    number (int): the number to be converted
+    base (int): the base of the number
+    new_base (int): the new base of the number
+
+    Returns int: the number converted to the new base
+    TODO Check if this is the substitution method?
+    """
+    # G is used ad a placehoolder for the value 16
+    values = "0123456789ABCDEFG"
+
+    result = ""
+
+    if base < new_base:
+        # conversion from a smaller base to a bigger base
+        number = number[::-1] # reverse the number
+        x = "1"
+        for digit in number:
+            result = add(result, mul(digit, x, new_base), new_base)
+            x = mul(x, values[new_base], new_base) # x = x * new_base
+
+
+    return result
+
+print(substitution_method("354", 6, 8))
+print(substitution_method("11011", 2, 4))
 
