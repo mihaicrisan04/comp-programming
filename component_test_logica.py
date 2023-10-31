@@ -149,7 +149,8 @@
 #     Returns (str, str): the quotient and the remainder of the two numbers
 #     """
     
-#     values = "0123456789ABCDEF"
+#     # G is added for the successive divisions method as a placeholder for 16
+#     values = "0123456789ABCDEFG"
 
 #     quotient = ""
 #     remainder = 0
@@ -174,4 +175,30 @@
 # print(div("999", "3", 10))
 # print(div("88", "3", 16))
 # print(div("FFFF", "2", 16))
+
+
+# def successive_divisions_method(number: str, base: int, new_base: int) -> str:
+#     """
+#     Description: This function converts a number from a base to another base using the successive divisions method
+
+#     Parameters:
+#     number (str): the number to be converted
+#     base (int): the base of the number
+#     new_base (int): the new base of the number
+
+#     Returns str: the number converted to the new base
+#     """
+    
+#     values = "0123456789ABCDEFG"
+
+#     result = ""
+
+#     while len(number) != 0:
+#         number, remainder = div(number, values[new_base], base)
+#         result = remainder + result
+
+#     return result
+
+
+# print(successive_divisions_method("2653", 10, 16))
 
