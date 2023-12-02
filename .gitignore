@@ -3,3 +3,13 @@ ccc/.DS_Store
 .DS_Store
 
 *.exe
+
+AdventOfCode/2023/day*/day*
+!AdventOfCode/2023/day*/**/*.cpp
+AdventOfCode/2023/day*/**/*.in
+AdventOfCode/2023/day*/**/*.out
+
+pbinfo/*
+!pbinfo/*/*.cpp
+
+.vscode
