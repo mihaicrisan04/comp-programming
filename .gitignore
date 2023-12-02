@@ -6,6 +6,7 @@ ccc/.DS_Store
 
 AdventOfCode/2023/day*/day*
 !AdventOfCode/2023/day*/**/*.cpp
+!AdventOfCode/2023/day*/**/*.py
 AdventOfCode/2023/day*/**/*.in
 AdventOfCode/2023/day*/**/*.out
 
