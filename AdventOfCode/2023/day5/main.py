@@ -8,7 +8,8 @@ def read_file():
         return lines
 
 def main() -> None:
-    pass
+    lines = read_file()
+    print(lines)
 
 if __name__ == '__main__':
     main()  
