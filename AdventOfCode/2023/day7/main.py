@@ -9,6 +9,7 @@ def read_file():
 
 def main() -> None:
     lines = read_file()
+    # nothing acutally just for the daily github commit 
     
 
 
