@@ -7,7 +7,6 @@ def read_file():
         return lines
 
 cards = '0123456789TJQKA'
-# types: high card, one pair, two pair, three of a kind, full house, four of a kind, five of a kind
 types = [[], [], [], [], [], [], []]
 
 def cmp(a, b):
