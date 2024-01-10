@@ -23,7 +23,7 @@ def lee(a, b, x, y):
                 lee(a, b, x - 1, y)
 
     if a[x][y] in ['F', 'J', '7', 'F']:
-        pass      
+        pass         
 
 
 def part1():
