@@ -1,7 +1,7 @@
 
 """
 def knapsack(w: int, weights: list, values: list) -> int:
-
+    # knapsak problem
     dp = [[0 for _ in range(len(weights) + 1)] for _ in range(w + 1)]
 
     for i in range(1, w + 1):
