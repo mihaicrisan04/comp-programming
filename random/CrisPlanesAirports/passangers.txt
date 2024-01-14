@@ -1,0 +1,6 @@
+A10 Mihai Crisan P105
+A10 John Wick P205
+A10 Mihai Bob P134
+B20 Cris Turcu P432
+B20 Pop Andrei P431
+C30 Nicu Boss P899
