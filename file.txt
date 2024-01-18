@@ -4,4 +4,6 @@ using namespace std;
 
 int main() {
 fsfsfsfsdfsfsfsfsfs	why is the tabspace so big? }
-
+int salut() {
+	// que pasa?
+}
