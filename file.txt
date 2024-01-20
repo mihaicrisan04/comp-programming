@@ -3,7 +3,5 @@
 using namespace std;
 
 int main() {
-sfsfsfsfsffsfsfsfsdfsfsfsfsfs	why is the tabspace so big? }
-int salut() {
 	// que pasa?
 }
