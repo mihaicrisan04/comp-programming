@@ -2,6 +2,6 @@ sdfsfsfsiiiiiiiiiiiii#include <iostream>
 // no comment
 using namespace std;
 using namespace std;
-int main() {
+int int main() {
 	// que pasa?
 alabalcec
