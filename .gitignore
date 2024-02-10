@@ -14,3 +14,10 @@ pbinfo/*
 !pbinfo/*/*.cpp
 
 .vscode
+**/.vscode
+.vscode/*
+**/*.exe
+*main
+!main.cpp
+!main.py
+
