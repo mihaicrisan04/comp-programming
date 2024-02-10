@@ -21,3 +21,7 @@ pbinfo/*
 !main.cpp
 !main.py
 
+./idea
+.idea
+.cph
+
