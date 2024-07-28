@@ -13,18 +13,30 @@ struct ListNode {
 class Solution {
 public:
     void reorderList(ListNode* head) {
-        while (head) {    
-            ListNode* next = head->next;
-            ListNode* prev = head; 
-            while (next) {
-                prev = next;
-                next = next->next;
-            }
-            prev->next = nullptr;           
-            ListNode* aux = head->next;
-            head->next = next;
-            next->next = aux;
-            head = aux->next;
+        ListNode* s = head;
+        ListNode* f = head->next;
+        while (f && f->next) {
+            s = s->next;
+            f = f->next->next;
+        }
+        ListNode* sec = s->next;
+        s->next = NULL;
+        ListNode* prev = NULL;
+        while (sec) {
+            ListNode* temp = sec->next;
+            sec->next = prev;
+            prev = sec;
+            sec = temp;
+        }
+        ListNode* second = prev;
+        ListNode* first;
+        while (second) {
+            ListNode* tmp1 = first->next;
+            ListNode* tmp2 = second->next;
+            first->next = second;
+            second->next = tmp1;
+            first = tmp1;
+            second = tmp2;
         }
     } 
 };
