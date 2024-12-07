@@ -1,94 +1,55 @@
-import sys
-from typing import Any
 
-sys.setrecursionlimit(100000)
-
-# with open("input.txt") as f:
-with open("test.txt") as f:
+with open("input.txt") as f:
+# with open("test.txt") as f:
     lines = f.readlines()
 
 a = [[c for c in line.strip()] for line in lines]
 n = len(a)
 
-path: set[tuple[int, int]] = set()
-k = 0
 
-d = {
-    '^': '>',
-    '>': 'v',
-    'v': '<',
-    '<': '^' 
-}
-b = {
-    '^': 'N',
-    '>': 'E',
-    'v': 'S',
-    '<': 'V' 
-}
+def nextMove(i, j, d):
+    if d == 0: return i-1, j # ^
+    if d == 1: return i, j+1 # >
+    if d == 2: return i+1, j # v
+    if d == 3: return i, j-1 # <
 
-def printMat():
-    for i in range(n):
-        for j in range(n):
-            print(a[i][j], end=' ')
-        print()
-    print()
+def inMatrix(i, j): return 0 <= i < n and 0 <= j < n 
 
-def printK(ni, nj):
-    for i in range(n):
-        for j in range(n):
-            if i == ni and j == nj:
-                print('O', end=' ')
-            else:
-                print(a[i][j], end=' ')
-        print()
-    print()
+def isCycle():
+    visited = set()
+    i, j = guard
+    d = 0 # direction of guard
+    visited.add((i, j, d))
 
-def nextMove(i, j, c):
-    if c == '^':
-        return i-1, j
-    if c == '>':
-        return i, j+1
-    if c == 'v':
-        return i+1, j
-    if c == '<':
-        return i, j-1
+    while True:
+        ni, nj = nextMove(i, j, d)
 
-def inMatrix(i, j):
-    return 0 <= i < n and 0 <= j < n 
+        if not inMatrix(ni, nj): return False
 
-def findPath(i, j, c):
-    global k
+        while a[ni][nj] == '#':
+            d = (d + 1) % 4
+            ni, nj = nextMove(i, j, d)
 
-    if not inMatrix(i, j): return
+        if (ni, nj, d) in visited: return True
 
-    a[i][j] = b[c]
-    path.add((i, j))
-
-    # printMat()
-
-    ni, nj = nextMove(i, j, c)
-    if inMatrix(ni, nj):
-        if a[ni][nj] == '#':
-            while a[ni][nj] == '#':
-                ni, nj = nextMove(i, j, d[c])
-            findPath(ni, nj, d[c])
-        else:
-            findPath(ni, nj, c)
+        visited.add((ni, nj, d))
+        i, j = ni, nj
 
 
+# get guard position
+for i in range(n):
+    for j in range(n):
+        if a[i][j] == '^':
+            guard = (i, j)
 
+sol = 0
+for i in range(n):
+    for j in range(n):
+        if a[i][j] != '#' and a[i][j] != '^':
+            a[i][j] = '#'
+            if isCycle():
+                sol += 1
+            a[i][j] = '.'
 
-def start():
-    for i in range(n):
-        for j in range(n):
-            if a[i][j] == '^':
-                findPath(i, j, '^')
-                return 
-
-
-start()
-printMat()
-print(k)
-
-for (x, y) in path:
-    print(x, y)
+        
+print(sol)
