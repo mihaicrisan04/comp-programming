@@ -25,13 +25,13 @@ for k, v in m.items():
             dl = abs(x[1] - y[1])
             p1 = [-1, -1]
             p2 = [-1, -1]
-            if x[0] <= y[0]: # x is hiher on the map
+            if x[0] <= y[0]: # x is hiher than y
                 p1[0] = x[0] - dh
                 p2[0] = y[0] + dh
             else:
                 p1[0] = x[0] + dh
                 p2[0] = y[0] - dh
-            if x[1] <= y[1]: # x is on the left
+            if x[1] <= y[1]: # x is on the left of y
                 p1[1] = x[1] - dl
                 p2[1] = y[1] + dl
             else:
