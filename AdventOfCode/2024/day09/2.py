@@ -1,8 +1,6 @@
 with open('input.txt', 'r') as f:
 # with open('test.txt', 'r') as f:
-    data = f.read()
-
-data = [int(c) for c in data]
+    data = [int(c) for c in f.read()]
 
 d = {} # id -> (size, start_pos)
 spaces = {} # pos -> size
