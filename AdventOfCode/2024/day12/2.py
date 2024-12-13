@@ -55,71 +55,61 @@ def AS(i, j, k):
 
             if vis[ni][nj] != -k and vis[ni][nj] != k:
                 # horizontal
-                if len(h[ni][d]) == 0:
+                extended = False
+                for p in range(len(h[ni][d])):
+                    l = h[ni][d][p][0]
+                    r = h[ni][d][p][1]
+                    if nj == l - 1:
+                        h[ni][d][p] = (nj, r)
+                        extended = True
+                        break
+                    if nj == r + 1:
+                        h[ni][d][p] = (l, nj)
+                        extended = True
+                        break
+                
+                if not extended:
                     h[ni][d].append((nj, nj))
-                else:
-                    extended = False
-                    for p in range(len(h[ni][d])):
-                        l = h[ni][d][p][0]
-                        r = h[ni][d][p][1]
-                        if nj == l - 1:
-                            h[ni][d][p] = (nj, r)
-                            extended = True
-                            break
-                        if nj == r + 1:
-                            h[ni][d][p] = (l, nj)
-                            extended = True
-                            break
-                    
-                    if not extended:
-                        h[ni][d].append((nj, nj))
 
-                    h[ni][d] = sorted(h[ni][d])
-                    unified = []
-                    for p in range(len(h[ni][d])):
-                        if p < len(h[ni][d]) - 1:
-                            if h[ni][d][p][1] == h[ni][d][p+1][0] - 1:
-                                unified.append((h[ni][d][p][0], h[ni][d][p+1][1]))
-                                p += 1
-                            else:
-                                unified.append(h[ni][d][p])
-                        else:
-                            unified.append(h[ni][d][p])
-                    h[ni][d] = unified
+                h[ni][d] = sorted(h[ni][d])
+                unified = []
+                for p in range(len(h[ni][d])):
+                    if p < len(h[ni][d]) - 1:
+                        if h[ni][d][p][1] == h[ni][d][p+1][0] - 1:
+                            unified.append((h[ni][d][p][0], h[ni][d][p+1][1]))
+                            p += 1
+                        else: unified.append(h[ni][d][p])
+                    else: unified.append(h[ni][d][p])
+                h[ni][d] = unified
                 
                 # vertical
-                if len(v[nj][d]) == 0:
-                    v[nj][d].append((ni, ni))
-                else:
-                    extended = False
-                    for p in range(len(v[nj][d])):
-                        l = v[nj][d][p][0]
-                        r = v[nj][d][p][1]
-                        if ni == l - 1:
-                            v[nj][d][p] = (ni, r)
-                            extended = True
-                            break
-                        if ni == r + 1:
-                            v[nj][d][p] = (l, ni)
-                            extended = True
-                            break
+                extended = False
+                for p in range(len(v[nj][d])):
+                    l = v[nj][d][p][0]
+                    r = v[nj][d][p][1]
+                    if ni == l - 1:
+                        v[nj][d][p] = (ni, r)
+                        extended = True
+                        break
+                    if ni == r + 1:
+                        v[nj][d][p] = (l, ni)
+                        extended = True
+                        break
 
-                    if not extended:
-                        v[nj][d].append((ni, ni))
-                    
-                    v[nj][d] = sorted(v[nj][d])
-                    unified = []
-                    for p in range(len(v[nj][d])):
-                        if p < len(v[nj][d]) - 1:
-                            if v[nj][d][p][1] == v[nj][d][p+1][0] - 1:
-                                unified.append((v[nj][d][p][0], v[nj][d][p+1][1]))
-                                p += 1
-                            else:
-                                unified.append(v[nj][d][p])
-                        else:
-                            unified.append(v[nj][d][p])
-                    v[nj][d] = unified
- 
+                if not extended:
+                    v[nj][d].append((ni, ni))
+                
+                v[nj][d] = sorted(v[nj][d])
+                unified = []
+                for p in range(len(v[nj][d])):
+                    if p < len(v[nj][d]) - 1:
+                        if v[nj][d][p][1] == v[nj][d][p+1][0] - 1:
+                            unified.append((v[nj][d][p][0], v[nj][d][p+1][1]))
+                            p += 1
+                        else: unified.append(v[nj][d][p])
+                    else: unified.append(v[nj][d][p])
+                v[nj][d] = unified
+
 
             if inMat(ni, nj) and vis[ni][nj] == k:
                 q.append((ni, nj))
