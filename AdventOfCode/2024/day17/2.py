@@ -1,8 +1,8 @@
 import re 
 
 # with open('test.txt', 'r') as f:
-with open('test2.txt', 'r') as f:
-# with open('input.txt', 'r') as f:
+# with open('test2.txt', 'r') as f:
+with open('input.txt', 'r') as f:
     data = f.read().splitlines()
 
 a = int(re.search(r'\d+', data[0]).group())
@@ -27,7 +27,8 @@ while not found:
     ca = a
 
     i = 0
-    while i < len(programs):
+    run = True
+    while i < len(programs) and run:
         iter_flag = True
 
         opcode = programs[i]
@@ -43,7 +44,10 @@ while not found:
             case 3:
                 if a != 0: i = operand; iter_flag = False
             case 4: b = b ^ c
-            case 5: out.append(combo(operand) % 8)
+            case 5: 
+                out.append(combo(operand) % 8)
+                if len(out) > len(programs): run = False
+                if len(out) > 0 and out[len(out) - 1] != programs[len(out) - 1]: run = False
             case 6:
                 op1 = a
                 op2 = combo(operand) 
@@ -55,7 +59,7 @@ while not found:
 
         if iter_flag: i += 2
 
-    if programs == out: found = True; print(a); break
+    if programs == out: found = True; print(ca); break
     a = ca + 1
 
 
